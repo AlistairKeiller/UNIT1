@@ -22,16 +22,29 @@ from chessmaker.chess.pieces import Pawn
 class CustomPawn(Pawn):
     def _get_move_options(self):
         move_options = []
-        non_capture_positions = [
-            *list(iterate_until_blocked(self, (0, self._direction.value)))[:1],
-            *list(iterate_until_blocked(self, (-self._direction.value, 0)))[:1],
-        ]
+        non_capture_positions_sideways = list(
+            iterate_until_blocked(self, (0, self._direction.value))
+        )[:1]
         if (
-            len(non_capture_positions) != 0
-            and self.board[non_capture_positions[-1]].piece is not None
+            len(non_capture_positions_sideways) != 0
+            and self.board[non_capture_positions_sideways[-1]].piece is not None
         ):
-            non_capture_positions.pop()
-        move_options += [MoveOption(position) for position in non_capture_positions]
+            non_capture_positions_sideways.pop()
+        move_options += [
+            MoveOption(position) for position in non_capture_positions_sideways
+        ]
+
+        non_capture_positions_sideways = list(
+            iterate_until_blocked(self, (-self._direction.value, 0))
+        )[:1]
+        if (
+            len(non_capture_positions_sideways) != 0
+            and self.board[non_capture_positions_sideways[-1]].piece is not None
+        ):
+            non_capture_positions_sideways.pop()
+        move_options += [
+            MoveOption(position) for position in non_capture_positions_sideways
+        ]
 
         capture_positions = [
             self.position.offset(1, self._direction.value),

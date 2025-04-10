@@ -122,4 +122,4 @@ def create_game(**_) -> Game:
 
 
 if __name__ == "__main__":
-    start_pywebio_chess_server(create_game, port=80)
+    start_pywebio_chess_server(create_game, port=8080)

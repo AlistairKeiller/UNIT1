@@ -10,8 +10,7 @@ from chessmaker.chess.results import (
     stalemate,
 )
 
-# from chessmaker.clients import start_pywebio_chess_server
-from cusotmwebserver import start_pywebio_chess_server
+from chessmaker.clients import start_pywebio_chess_server
 
 from custompawn import CustomPawn
 
@@ -123,4 +122,4 @@ def create_game(**_) -> Game:
 
 
 if __name__ == "__main__":
-    start_pywebio_chess_server(create_game, port=8080, host="localhost")
+    start_pywebio_chess_server(create_game, port=80)

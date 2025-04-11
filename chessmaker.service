@@ -3,7 +3,6 @@ Description=Run UV service (main.py) in UNIT1 directory
 After=network.target
 
 [Service]
-User=alistair
 WorkingDirectory=/home/alistair/UNIT1
 ExecStart=/home/alistair/.local/bin/uv run main.py
 Restart=on-failure
